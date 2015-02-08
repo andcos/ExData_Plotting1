@@ -3,7 +3,7 @@
 ##===========================================
 ## FILE 1
 ##===========================================
-setwd("C:/DATA/COURSERA/04_EDA/COURSE PRJ 1")
+##setwd("C:/DATA/COURSERA/04_EDA/COURSE PRJ 1")
 filename="household_power_consumption.txt"
 
 
@@ -15,13 +15,6 @@ if(file.exists("household_power_consumption.txt")){
         print("...Wrong directory...")
         print(" change directory to where file : household_power_consumption.txt exists")
     }
-
-    while (!file.exists(file.path(Dir, filename), showWarnings=FALSE)) Dir <- readline(paste("WRONG directory in\n",normalizePath(Dir),"\nPlease choose directory ( with 'filename' etc.):"))
-    setwd(Dir);
-}
-
-
-
 
 library(data.table)
 library(lubridate)
@@ -41,9 +34,8 @@ rm(data1)
 energydata$Date<-as.Date(energydata$Date,"%d/%m/%Y")
 energydata$Date<-as.character(energydata$Date)
 energydata$Time <-paste(energydata$Date, energydata$Time)
-##test<-strptime(energydata$Time,format="%Y-%m-%d %H:%M:%S")
-##test2<-as.POSIXct(test)
 
+## Time as [1] "2007-02-01 00:00:00 GMT"
 energydata$Time<-as.POSIXct(strptime(energydata$Time,format="%Y-%m-%d %H:%M:%S"))
 
 ## save energydata to R 
